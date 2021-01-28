@@ -8,10 +8,6 @@ inputs:
   args:
     description: 'Arguments to be passed to the test command'
     required: false
-# outputs:
-#   random-number:
-#     description: "Random number"
-#     value: ${{ steps.random-number-generator.outputs.random-id }}
 runs:
   using: "composite"
   steps:
