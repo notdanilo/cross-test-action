@@ -39,5 +39,9 @@ fn execute(command: &str, args: &[&str]) {
 fn main() {
     let platform: Platform = std::env::args().into();
     execute("cargo", &["install", "cargo-cross-test"]);
+    match platform {
+        Platform::Web | Platform::All => execute("cargo", &["install", "wasm-pack"]),
+        _ => ()
+    }
     execute("cargo", &["cross-test", &format!("{:?}", platform)]);
 }
