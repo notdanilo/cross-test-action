@@ -1,10 +1,13 @@
 name: 'Hello World'
 description: 'Greet someone'
 inputs:
-  platform:  # id of input
+  platform:
     description: 'Target platform'
     required: true
     default: 'all'
+  args:
+    description: 'Arguments to be passed to the test command'
+    required: false
 # outputs:
 #   random-number:
 #     description: "Random number"
@@ -12,5 +15,5 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - run: cargo run --release --manifest-path=${{ github.action_path }} -- ${{ inputs.platform }}
+    - run: cargo run --release --manifest-path=${{ github.action_path }} -- ${{ inputs.platform }} -- ${{ inputs.args }}
       shell: bash
