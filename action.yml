@@ -1,7 +1,7 @@
 name: 'Hello World'
 description: 'Greet someone'
 inputs:
-  platform:
+  platform:  # id of input
     description: 'Target platform'
     required: true
     default: 'all'
@@ -12,11 +12,5 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - uses: actions-rs/toolchain@v1
-      with:
-        toolchain: stable
-    - uses: actions-rs/cargo@v1
-      with:
-        command: test
-        args: --release
-    - run: echo Platform ${{ inputs.platform }}.
+    - run: cargo run --release --manifest-path=${{ github.action_path }} -- ${{ inputs.platform }}
+      shell: bash
